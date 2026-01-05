@@ -24,9 +24,13 @@ export const signup = async (req, res) => {
   );
 
   // Create JWT
-  const token = jwt.sign({ id: result.insertId }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
-  });
+  const token = jwt.sign(
+    { id: result.insertId, role: "user" },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1d",
+    }
+  );
 
   // Send cookie
   res.cookie("jwt", token, {
@@ -55,9 +59,14 @@ export const login = async (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: "1d",
-  });
+  const token = jwt.sign(
+    {
+      id: user.id,
+      role: user.role,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
 
   res.cookie("jwt", token, {
     httpOnly: true,
