@@ -1,11 +1,17 @@
+import AppError from "../../utils/AppError.js";
+
 export const checkWordLength = (req, res, next) => {
   const { word } = req.body;
-  if (word.length > 8) {
-    return res.status(400).json({
-      message: "Word Length greater than 8.Try less than 8",
-      given_word: word,
-      word_length: word.length,
-    });
+
+  if (!word) {
+    return next(new AppError("Word is required", 400));
   }
+
+  if (word.length > 8) {
+    return next(
+      new AppError("Word length must be less than or equal to 8", 400),
+    );
+  }
+
   next();
 };
