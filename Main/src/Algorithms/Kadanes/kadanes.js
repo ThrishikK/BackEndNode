@@ -1,4 +1,4 @@
-function maxSubArrayWithIndices(nums) {
+function logic(nums) {
   let currentSum = nums[0];
   let maxSum = nums[0];
 
@@ -31,6 +31,6 @@ function maxSubArrayWithIndices(nums) {
   };
 }
 
-console.log(maxSubArrayWithIndices([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
+console.log(logic([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
 
-export default maxSubArrayWithIndices;
+export default logic;

@@ -1,4 +1,4 @@
-function getPermutations(str) {
+function logic(str) {
   if (str.length === 1) return [str];
 
   let result = [];
@@ -7,7 +7,7 @@ function getPermutations(str) {
     const currentChar = str[i];
     const remaining = str.slice(0, i) + str.slice(i + 1);
 
-    const remainingPerms = getPermutations(remaining);
+    const remainingPerms = logic(remaining);
 
     for (let perm of remainingPerms) {
       result.push(currentChar + perm);
@@ -18,7 +18,7 @@ function getPermutations(str) {
 }
 
 // Example
-// console.log(getPermutations("PRASAD"));
-// console.log(getPermutations("ABC"));
+// console.log(logic("PRASAD"));
+// console.log(logic("ABC"));
 
-export default getPermutations;
+export default logic;
